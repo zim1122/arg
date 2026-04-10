@@ -471,3 +471,103 @@ plot(t, x, 'LineWidth', 1.5);
 xlabel('Time (s)');
 ylabel('Amplitude');
 title('Manually Generated Sawtooth Signal');
+
+
+//time-cos 2pift
+
+frequency = 1; % Hz
+amplitude = 3;
+duration = 4; % seconds
+samplingRate = 30; % Samples per second
+
+% Create the time vector
+t = 0:1/samplingRate:duration;
+
+% Create the signal
+y = amplitude * cos(2 * pi * frequency * t);
+
+% Plot the signal
+plot(t, y);
+xlabel('Time (s)');
+ylabel('Amplitude');
+title('Simple Cosine Signal');
+legend ('Cosine wave');
+
+//time_cos2pift_theta.
+
+frequency = 2; % Hz
+amplitude = 3;
+duration = 4; % seconds
+samplingRate = 100; % Samples per second
+theta=pi;
+% Create the time vector
+t = 0:1/samplingRate:duration;
+
+% Create the signal
+y = amplitude * cos(2 * pi * frequency * t+theta);
+
+% Plot the signal
+plot(t, y);
+xlabel('Time (s)');
+ylabel('Amplitude');
+title('Simple cosine Signal with theta');
+
+
+//time_exponential
+
+% x(t)=A*e-alpha*t signal
+A = 5;             % Initial amplitude
+alpha = 2;             % Decay rate
+duration = 2;      % seconds
+samplingRate = 20;
+t = 0:1/samplingRate:duration;
+
+x = A * exp(-alpha * t);
+
+plot(t, x);
+xlabel('Time (s)');
+ylabel('Amplitude');
+title('Exponential Decay: x(t) = A · exp(-a·t)');
+
+//time_sin_cost2pift
+frequency = 2; % Hz
+amplitude = 3;
+duration = 4; % seconds
+samplingRate = 100; % Samples per second
+
+% Create the time vector
+t = 0:1/samplingRate:duration;
+
+% Create the signal
+y1 = amplitude * sin(2 * pi * frequency * t);
+y2 = amplitude * cos(2 * pi * frequency * t);
+% Plot the signal
+plot(t, y1);
+hold on;
+plot(t,y2);
+xlabel('Time (s)');
+ylabel('Amplitude');
+title(' Sine cosine combined Signal');
+legend('Sine Wave', 'Cosine Wave');
+
+//frequency1
+
+
+//% Simple Frequency vs Amplitude plot
+Fs = 50;                    % Sampling frequency (Hz)
+t = 0:1/Fs:1-1/Fs;          % Time vector: 1 second
+x = sin(2*pi*50*t);           % A 50 Hz sine wave
+N = length(x);                % Signal length
+X = fft(x);                   % Compute FFT
+f = (0:N-1)*(Fs/N);           % Frequency axis
+
+amplitude = abs(X)/N;         % Amplitude spectrum (normalized)
+disp(amplitude);
+% Plot frequency vs amplitude
+figure;
+plot(f, amplitude);
+xlabel('Frequency (Hz)');
+ylabel('Amplitude');
+title('Frequency vs Amplitude');
+%xlim([0 Fs/2]);               % Only show positive frequencies
+%grid on;
